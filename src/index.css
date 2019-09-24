@@ -1,13 +1,140 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
+
+:-webkit-any(article,aside,nav,section) h1 {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  font-family: Space Mono;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  margin: 0;
+}
+
+* {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+h1 {
+  font-size: 30vmin;
+  font-weight: 400;
+}
+
+h1.small-text {
+  font-size: 20vmin;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* height: calc(var(--vh, 1vh) * 100); */
+  text-align: center;
+  background-color: #0074d9;
+  transition: background-color 0.6s ease;
+}
+
+section.convert-peso {
+  background-color: #fff !important;
+}
+
+section.convert-peso *, section.convert-peso *::placeholder {
+  color: #0074d9 !important;
+}
+
+section.convert-peso input {
+  border-bottom: 1px solid #0074d9 !important;
+}
+
+input[type='number'] {
+  margin-top: 40px;
+  background-color: unset;
+  border: 0px;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  outline: unset;
+  width: 30vw;
+  text-align: center;
+  font-family: Space Mono;
+  font-size: 16px;
+}
+
+input[type='number']::placeholder {
+  color: #fff;
+  text-align: center;
+  font-family: Space Mono;
+
+}
+
+input.convert-peso[type='number']::placeholder {
+  color: #0074d9;
+  text-align: center;
+  font-family: Space Mono;
+
+}
+
+nav {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+p {
+  margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+nav p {
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+nav p.selected {
+  text-decoration: underline;
+}
+
+p.middle-a {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+p.convert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  border-radius: 2px;
+  margin-top: 20px;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+p.marco-polo {
+  top: unset;
+  bottom: 0;
+  margin-top: unset;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 480px) {
+  input[type='number'] {
+    width: 80vw;
+    border-radius: 0;
+  }
+
+  h1 {
+    font-size: 82px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 14px;
+  }
 }
