@@ -40,7 +40,7 @@ const BackgroundImage = (props) => (
 )
 
 const Footer = () => (
-  <p className="convert marco-polo">Hecho por <span><a href="/" target="_blank">Marco Polo</a></span>
+  <p className="convert marco-polo">Hecho por <span><a href="http://marcopolo.agency" target="_blank">Marco Polo</a></span>
   </p>
 )
 
