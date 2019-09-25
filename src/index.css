@@ -116,6 +116,31 @@ p.convert {
   cursor: pointer;
 }
 
+p.convert a, nav p {
+  color: #fff;
+  text-decoration: none !important;
+  position: relative;
+}
+
+
+p.convert a::after, nav p::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s ease;
+  content: "";
+  background: #fff;
+}
+
+p.convert a:hover::after, nav p:hover::after {
+transform: scaleX(1);
+}
+
+
 p.marco-polo {
   top: unset;
   bottom: 0;

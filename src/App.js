@@ -1,32 +1,17 @@
 import React, { Component } from 'react';
+import NavLinks from './data/menu'
 
 let source = 'USD';
 let target = 'ARS';
-let initialPrice = 0;
-let result = "";
-let intialPrice = "";
-let inputValue = "";
-
-const nav = [
-  {
-    children: "USD",
-    key: 1,
-  },
-  {
-    children: "EUR",
-    class: "middle-a",
-    key: 2,
-  },
-  {
-    children: "GBP",
-    key: 3,
-  }
-];
+let initialPrice;
+let result;
+let intialPrice;
+let inputValue;
 
 
 const Nav = (props) => (
   <nav className="flex w-40">
-    {nav.map(item =>
+    {NavLinks.map(item =>
       <p key={item.key} className={item.class} datacurrency={item.children}
         onClick={props.newCurrency}>
         {item.children}
@@ -54,13 +39,12 @@ class App extends Component {
     super(props)
     this.state = {
       convertPeso: false,
-      isLoaded: false,
-      data: [],
       priceTag: "",
       isSmall: false,
       typeColor: "#000",
+      userValue: 0,
+      background: "",
     }
-
     this.calculateCurrency = this.calculateCurrency.bind(this);
     this.checkPrice = this.checkPrice.bind(this);
     this.convertToPeso = this.convertToPeso.bind(this);
@@ -79,10 +63,12 @@ class App extends Component {
             {isLoading ? '--.-' : priceTag}
           </h1>
 
-          <Legend {...this.state} {...this.props} convertPeso={this.state.convertPeso} />
+          <Legend {...this.state} {...this.props}
+            convertPeso={this.state.convertPeso}
+          />
 
           <div className="calculator">
-            <input type="number" id="dolar" pattern="[0-9]*" placeholder="USD a convertir.." onChange={this.calculateCurrency} />
+            <input type="number" id="dolar" pattern="[0-9]*" placeholder={`${source} por a convertir..`} onChange={this.calculateCurrency} />
           </div>
 
           <Footer />
@@ -134,28 +120,27 @@ class App extends Component {
 
 
   newCurrency = (event) => {
-    console.log(event.target.getAttribute('datacurrency'));
-    event.target.classList.add('selected');
+    // event.target.classList.add('selected');
     var newSource = event.target.getAttribute('datacurrency');
     source = newSource
     this.setState({
       priceTag: initialPrice,
+      background: newSource,
     })
     this.checkPrice(source, target)
   }
 
 
-  componentDidMount() {
-    this.checkPrice(source, target);
-  }
+
 
   calculateCurrency = (event) => {
-    const convertPeso = this.convertPeso;
+    const isPeso = this.state.convertPeso
+    console.log(isPeso)
 
     const userInput = event.target
     let inputValue = userInput.value;
 
-    if (convertPeso) {
+    if (isPeso) {
       result = inputValue / initialPrice
       console.log("dividing")
     } else {
@@ -167,18 +152,24 @@ class App extends Component {
       result = result.toFixed(2);
       this.setState({
         isSmall: false,
+        userValue: inputValue,
       });
 
     } else {
       result = parseFloat(result.toFixed(0)).toLocaleString();
       this.setState({
         isSmall: true,
+        userValue: inputValue,
       });
     }
 
-    this.setState((props) => ({
+    this.setState(() => ({
       priceTag: result,
     }));
+  }
+
+  componentDidMount() {
+    this.checkPrice(source, target);
   }
 
 }
