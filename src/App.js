@@ -63,10 +63,19 @@ const Footer = () => (
   </p>
 );
 
+const BackgroundColor = props => (
+  <section
+    className={
+      props.convertPeso ? `convert-peso${'-' + props.background}` : `convert-${props.background}`
+    }
+  ></section>
+);
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoaded: false,
       convertPeso: false,
       priceTag: '',
       isSmall: false,
@@ -83,9 +92,9 @@ class App extends Component {
   }
 
   render() {
-    const {convertPeso, priceTag, isSmall, isLoading, background} = this.state;
+    const {convertPeso, priceTag, isSmall, isLoading, background, isLoaded} = this.state;
     return (
-      <div className="page">
+      <div className={isLoaded ? 'loaded page' : 'page'}>
         <section
           className={convertPeso ? `convert-peso${'-' + background}` : `convert-${background}`}
         >
@@ -104,6 +113,8 @@ class App extends Component {
           <Calculator calculateCurrency={this.calculateCurrency} />
           <Footer />
           <BackgroundImage {...this.state} />
+
+          <BackgroundColor {...this.props} {...this.state} convertPeso={this.state.convertPeso} />
         </section>
       </div>
     );
@@ -134,7 +145,8 @@ class App extends Component {
             ...prevState,
             priceTag: initialPrice,
             isLoading: false,
-            isSmall: false
+            isSmall: false,
+            isLoaded: true
           }));
         },
         error => {}
@@ -211,6 +223,10 @@ class App extends Component {
 
   componentDidMount() {
     this.checkPrice(source, target);
+
+    // this.setState(() => ({
+    //   isLoaded: true
+    // }));
 
     // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
     let vh = window.innerHeight * 0.01;
