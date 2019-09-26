@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
 
-:-webkit-any(article,aside,nav,section) h1 {
+:-webkit-any(article, aside, nav, section) h1 {
   margin-block-start: 0em;
   margin-block-end: 0em;
 }
-
 
 body {
   font-family: Space Mono;
@@ -17,10 +16,10 @@ body {
 * {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 h1 {
@@ -49,7 +48,10 @@ section > * {
   z-index: 3;
 }
 
-section.convert-peso, section.convert-peso-GBP, section.convert-peso-EUR, section.convert-peso-USD  {
+section.convert-peso,
+section.convert-peso-GBP,
+section.convert-peso-EUR,
+section.convert-peso-USD {
   background-color: #fff !important;
 }
 
@@ -57,7 +59,9 @@ section.convert-USD {
   background-color: rgb(21, 162, 113);
 }
 
-section.convert-peso-USD *, section.convert-peso-USD *::placeholder, section.convert-peso-USD .symbol  {
+section.convert-peso-USD *,
+section.convert-peso-USD *::placeholder,
+section.convert-peso-USD .symbol {
   color: rgb(21, 162, 113) !important;
 }
 
@@ -65,12 +69,13 @@ section.convert-peso-USD input {
   border-bottom: 1px solid rgb(21, 162, 113) !important;
 }
 
-
 section.convert-EUR {
   background-color: rgb(105, 27, 73);
 }
 
-section.convert-peso-EUR *, section.convert-peso-EUR *::placeholder, section.convert-peso-EUR .symbol  {
+section.convert-peso-EUR *,
+section.convert-peso-EUR *::placeholder,
+section.convert-peso-EUR .symbol {
   color: rgb(105, 27, 73) !important;
 }
 
@@ -78,16 +83,15 @@ section.convert-peso-EUR input {
   border-bottom: 1px solid rgb(105, 27, 73) !important;
 }
 
-
 section.convert-GBP {
   background-color: rgb(0, 77, 170);
-
 }
 
-section.convert-peso-GBP *, section.convert-peso-GBP *::placeholder, section.convert-peso-GBP .symbol  {
+section.convert-peso-GBP *,
+section.convert-peso-GBP *::placeholder,
+section.convert-peso-GBP .symbol {
   color: #0074d9 !important;
 }
-
 
 section.convert-peso-GBP input {
   border-bottom: 1px solid #0074d9 !important;
@@ -110,14 +114,12 @@ input[type='number']::placeholder {
   color: #fff;
   text-align: center;
   font-family: Space Mono;
-
 }
 
 input.convert-peso[type='number']::placeholder {
   color: #0074d9;
   text-align: center;
   font-family: Space Mono;
-
 }
 
 nav {
@@ -129,7 +131,7 @@ nav {
 
 p {
   margin-block-start: 0em;
-    margin-block-end: 0em;
+  margin-block-end: 0em;
 }
 
 nav p {
@@ -158,14 +160,15 @@ p.convert {
   cursor: pointer;
 }
 
-p.convert a, nav p {
+p.convert a,
+nav p {
   color: #fff;
   text-decoration: none !important;
   position: relative;
 }
 
-
-p.convert a::after, nav p::after {
+p.convert a::after,
+nav p::after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -174,14 +177,14 @@ p.convert a::after, nav p::after {
   transform: scaleX(0);
   transform-origin: left;
   transition: all 0.3s ease;
-  content: "";
+  content: '';
   background: #fff;
 }
 
-p.convert a:hover::after, nav p:hover::after {
-transform: scaleX(1);
+p.convert a:hover::after,
+nav p:hover::after {
+  transform: scaleX(1);
 }
-
 
 p.marco-polo {
   top: unset;
@@ -200,7 +203,6 @@ p.marco-polo {
   color: #fff;
   padding-bottom: 60px;
   font-size: 60vw;
-
 }
 
 @media (max-width: 480px) {
@@ -217,5 +219,8 @@ p.marco-polo {
     text-align: center;
     font-size: 14px;
   }
-}
 
+  .symbol {
+    font-size: 150vw;
+  }
+}
