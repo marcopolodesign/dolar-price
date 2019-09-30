@@ -140,16 +140,22 @@ class App extends Component {
         data => {
           const convertPeso = this.state.convertPeso;
           if (convertPeso) {
-            initialPrice = 1 / data[0].rate;
-            initialPrice = initialPrice.toFixed(2);
+            let dividedPrice = 1 / data[0].rate;
+            dividedPrice = dividedPrice.toFixed(2);
+            this.setState(() => ({
+              priceTag: dividedPrice
+            }));
           } else {
             initialPrice = data[0].rate;
             initialPrice = initialPrice.toFixed(2);
+
+            this.setState(() => ({
+              priceTag: initialPrice
+            }));
           }
 
           this.setState((prevState, props) => ({
             ...prevState,
-            priceTag: initialPrice,
             isLoading: false,
             isSmall: false,
             isLoaded: true
@@ -189,7 +195,6 @@ class App extends Component {
         };
       }
       return {
-        priceTag: 1 / initialPrice,
         background: newSource,
         userValue: 1,
         currencySymbol: newSymbol,
