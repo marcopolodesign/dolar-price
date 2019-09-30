@@ -26,7 +26,7 @@ const Nav = props => (
 
 const Header = props => (
   <p className="convert" onClick={props.convertToPeso}>
-    Convertir {props.currency}
+    {props.convertPeso ? `Convertir ${props.currency}` : 'Convertir Pesos'}
   </p>
 );
 
@@ -138,8 +138,14 @@ class App extends Component {
       .then(response => response.json())
       .then(
         data => {
-          initialPrice = data[0].rate;
-          initialPrice = initialPrice.toFixed(2);
+          const convertPeso = this.state.convertPeso;
+          if (convertPeso) {
+            initialPrice = 1 / data[0].rate;
+            initialPrice = initialPrice.toFixed(2);
+          } else {
+            initialPrice = data[0].rate;
+            initialPrice = initialPrice.toFixed(2);
+          }
 
           this.setState((prevState, props) => ({
             ...prevState,
@@ -162,6 +168,8 @@ class App extends Component {
         userValue: 1
       };
     });
+
+    this.checkPrice(source, target);
     result = inputValue / initialPrice;
   };
 
@@ -184,7 +192,8 @@ class App extends Component {
         priceTag: 1 / initialPrice,
         background: newSource,
         userValue: 1,
-        currencySymbol: newSymbol
+        currencySymbol: newSymbol,
+        currency: newSource
       };
     });
 
